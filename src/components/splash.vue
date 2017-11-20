@@ -46,7 +46,8 @@ export default {
   },
   mounted: function(){
     this.$nextTick(function () {
-        this.get_school_list();
+        // this.get_school_list();
+        this.login();
       });
   },
   methods:{
@@ -60,6 +61,14 @@ export default {
     get_course: function(school_num){
        this.$http.post('https://finalexam.cn/api/school/listAcademy',{college: school_num}).then(response =>{
        this.courses = response.body.res;
+       }, response => {
+       // error callback
+     });
+    },
+    login: function(){
+       this.$http.post('https://finalexam.cn/api/user/login',{un: '13110635052',pw:'123456'}).then(response =>{
+      //  this.courses = response.body.res;
+      console.log(response.body.res);
        }, response => {
        // error callback
      });
