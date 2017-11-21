@@ -15,19 +15,13 @@
         </Menu>
         </Col>
         <Col span="19">
-        <div class="layout-header"></div>
-        <div class="layout-breadcrumb">
-          <Breadcrumb>
-            <BreadcrumbItem href="#">首页</BreadcrumbItem>
-            <BreadcrumbItem href="#">应用中心</BreadcrumbItem>
-            <BreadcrumbItem>某应用</BreadcrumbItem>
-          </Breadcrumb>
-        </div>
         <div class="layout-content">
-          <div class="layout-content-main">内容区域</div>
+          <div class="layout-content-main">
+            <iframe :src="'https://view.officeapps.live.com/op/embed.aspx?src=' + url" width='100%' height='1000px' frameborder='0'></iframe>
+          </div>
         </div>
         <div class="layout-copy">
-          2011-2016 &copy; TalkingData
+          2017-2018 &copy; Chen Zhangwei
         </div>
         </Col>
       </Row>
@@ -37,20 +31,24 @@
 
 <script>
 export default {
-  name: 'splash',
   data () {
     return {
-      courses:[],
-      schools:[]
+      courses: [],
+      schools: [],
+      url: '',
     }
   },
   mounted: function(){
     this.$nextTick(function () {
         // this.get_school_list();
-        this.login();
+        // this.login();
+        this.display();
       });
   },
   methods:{
+    display:function(){
+      this.url = 'http://testalicloud.oss-cn-hangzhou.aliyuncs.com/test.doc';
+    },
     get_school_list:function () {
       this.$http.post('https://finalexam.cn/api/school/list').then(response =>{
         this.schools = response.body.res;
@@ -88,7 +86,7 @@ export default {
     padding: 10px 15px 0;
   }
   .layout-content{
-    min-height: 1200px;
+    min-height: 1000px;
     margin: 15px;
     overflow: hidden;
     background: #fff;
